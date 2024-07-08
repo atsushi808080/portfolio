@@ -1,8 +1,20 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Bricolage_Grotesque, Oswald } from "next/font/google";
+import localFont from "next/font/local";
+import localFont2 from "next/font/local";
 import "./globals.css";
+import { cn } from "@/lib/utils";
 
-const inter = Inter({ subsets: ["latin"] });
+const MainFont = Bricolage_Grotesque({ subsets: ["latin"] });
+const OswaldFont = Oswald({ subsets: ["latin"], variable: "--font-oswald" });
+const PixelFont = localFont({
+  src: "../public/assets/fonts/GaMaamli-Regular.ttf",
+  variable: "--font-pixel",
+});
+const PixelFont2 = localFont2({
+  src: "../public/assets/fonts/PixelifySans-VariableFont_wght.ttf",
+  variable: "--font-pixel2",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +28,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={cn(MainFont.className, OswaldFont.variable, PixelFont.variable, PixelFont2.variable)}>
+        {children}
+      </body>
     </html>
   );
 }
